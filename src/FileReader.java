@@ -3,7 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-public class FileReader {
+public class FileReader { // класс для считывания файлов
     ArrayList<String> readFileContents(String fileName) {
         String path = "./resources/" + fileName;
         try {
@@ -13,5 +13,4 @@ public class FileReader {
             return new ArrayList<>();
         }
     }
-
 }
