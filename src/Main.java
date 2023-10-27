@@ -2,25 +2,24 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        ReportEngine engine = new ReportEngine();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             printMenu();
             int userInput = scanner.nextInt();
             if (userInput == 1) {
-                MonthlyReport.getDataForMonth();
-                System.out.println("Файлы успешно считаны.");
+                engine.readMonthlyReports();
+               System.out.println("Файлы успешно считаны.");
             } else if (userInput == 2) {
-                YearlyReport.getDataForYear();
+                engine.readYearReport();
                 System.out.println("Файл успешно считан.");
             } else if (userInput == 3) {
-                ReportEngine.checkIncomeAndExpense();
+                engine.reconciliationReports();
             } else if (userInput == 4) {
-                ReportEngine.topProduct();
-                ReportEngine.biggestWaste();
+                engine.topProduct();
+                engine.biggestWaste();
             } else if (userInput == 5) {
-                ReportEngine.printAmountMonth();
-                ReportEngine.averageSumYearTrue();
-                ReportEngine.averageSumYearFalse();
+                engine.printStatistic();
             } else if (userInput == 0) {
                 System.out.println("До свидания!");
                 break;
@@ -38,43 +37,5 @@ public class Main {
         System.out.println("4 - Вывести информацию обо всех месячных отчётах.");
         System.out.println("5 - Вывести информацию о годовом отчёте.");
         System.out.println("0 - Выход.");
-    }
-
-    public static void checkFileReadForYear() { // проверяет считаны ли файлы за год
-        Scanner scanner = new Scanner(System.in);
-        if (!YearlyReport.transactionsYear.isEmpty()) {
-        } else if (YearlyReport.transactionsYear.isEmpty()) {
-            System.out.println("Данные годового отчёта не считаны, выберите команду:");
-            System.out.println("1 - Cчитывание годового отчёта. И вывод информации о годовом отчёте.");
-            System.out.println("0 - Выход из программы.");
-            int command = scanner.nextInt();
-            if (command == 1) {
-                YearlyReport.getDataForYear();
-            } else if (command == 0) {
-                System.out.println("До свидания!");
-                System.exit(command);
-            } else {
-                System.out.println("Неверно ведена команда.");
-            }
-        }
-    }
-
-    public static void checkFileReadForMonth() { // проверяет считаны ли файлы за месяц
-        Scanner scanner = new Scanner(System.in);
-        if (!MonthlyReport.monthExpenseMap.isEmpty() && !MonthlyReport.monthIncomeMap.isEmpty()) {
-        } else if (MonthlyReport.monthExpenseMap.isEmpty() && MonthlyReport.monthIncomeMap.isEmpty()) {
-            System.out.println("Данные месячных отчётов не считаны, выберите команду:");
-            System.out.println("1 - Cчитывание месячных отчётов. И вывод информации обо всех месячных отчётах.");
-            System.out.println("0 - Выход из программы.");
-            int command = scanner.nextInt();
-            if (command == 1) {
-                MonthlyReport.getDataForMonth();
-            } else if (command == 0) {
-                System.out.println("До свидания!");
-                System.exit(command);
-            } else {
-                System.out.println("Неверно ведена команда.");
-            }
-        }
     }
 }
